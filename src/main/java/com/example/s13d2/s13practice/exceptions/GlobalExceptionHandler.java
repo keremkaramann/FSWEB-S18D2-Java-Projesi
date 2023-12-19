@@ -25,7 +25,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler
-    public ResponseEntity handleBindExceptions(MethodArgumentNotValidException exception) {
+    public ResponseEntity handleException(MethodArgumentNotValidException exception) {
         List errorList = exception.getBindingResult().getFieldErrors()
                 .stream().map(fieldError -> {
                     log.error(fieldError.getField() + ": " + fieldError.getDefaultMessage());
@@ -37,7 +37,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler
-    public ResponseEntity<GeneralErrorResponse> handleBindExceptions(Exception exception) {
+    public ResponseEntity<GeneralErrorResponse> handleException(Exception exception) {
         GeneralErrorResponse generalErrorResponse = new GeneralErrorResponse(
                 HttpStatus.BAD_REQUEST.value(), exception.getMessage(), LocalDateTime.now());
         log.error("EXCEPTION OCCURED: " + exception.getMessage());
