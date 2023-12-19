@@ -39,8 +39,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler
     public ResponseEntity<GeneralErrorResponse> handleException(Exception exception) {
         GeneralErrorResponse generalErrorResponse = new GeneralErrorResponse(
-                HttpStatus.BAD_REQUEST.value(), exception.getMessage(), LocalDateTime.now());
+                HttpStatus.INTERNAL_SERVER_ERROR.value(), exception.getMessage(), LocalDateTime.now());
         log.error("EXCEPTION OCCURED: " + exception.getMessage());
-        return new ResponseEntity<>(generalErrorResponse, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(generalErrorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

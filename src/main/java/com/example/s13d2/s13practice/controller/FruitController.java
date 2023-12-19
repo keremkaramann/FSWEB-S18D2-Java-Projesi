@@ -1,5 +1,7 @@
 package com.example.s13d2.s13practice.controller;
 
+import com.example.s13d2.s13practice.dto.FruitResponse;
+import com.example.s13d2.s13practice.dto.VegetableResponse;
 import com.example.s13d2.s13practice.entity.Fruit;
 import com.example.s13d2.s13practice.services.FruitService;
 import jakarta.validation.constraints.Positive;
@@ -23,7 +25,10 @@ public class FruitController {
     public List<Fruit> get() {
         return fruitService.getFruitByPriceAsc();
     }
-
+    @GetMapping("/{id}")
+    public FruitResponse get(@Positive @PathVariable Long id) {
+        return new FruitResponse("Success", fruitService.getById(id));
+    }
     @GetMapping("/desc")
     public List<Fruit> getByDesc() {
         return fruitService.getFruitByPriceDesc();

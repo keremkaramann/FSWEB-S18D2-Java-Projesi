@@ -17,6 +17,6 @@ public interface VegetableRepository extends JpaRepository<Vegetable, Long> {
             "ORDER BY v.price ASC", nativeQuery = true)
     List<Vegetable> getVegByPriceDesc();
 
-    @Query(value = "SELECT v FROM VEGETABLE v WHERE v.name ILIKE %:name%")
+    @Query(value = "SELECT v FROM Vegetable v WHERE v.name ILIKE %:name%")
     List<Vegetable> getVegByName(String name);
 }
